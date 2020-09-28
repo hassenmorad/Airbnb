@@ -6,6 +6,11 @@ reviews = pd.read_csv('airbnb_reviews_us_cities.csv')
 listings = pd.read_csv('airbnb_id_latlon.csv')
 
 comb = pd.merge(listings, reviews, on='listing_id', how='right')
+
+#Extra Cols (for hexbin formatting)
+comb['Col1'] = comb.index
+comb['Col2'] = [0,1]*(len(comb)//2) + [0]
+
 comb.to_csv('airbnb_reviews_date_latlon.csv', index=False)
 
 # 2019-2020 Data
